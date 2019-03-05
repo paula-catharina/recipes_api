@@ -1,0 +1,10 @@
+api/__pycache__/
+config/__pycache__/
+db/__pycache__/
+model/__pycache__/
+swagger/__pycache__/
+templates/__pycache__/
+test/__pycache__/
+/.idea/
+/.idea/*
+*.pyc
