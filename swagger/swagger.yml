@@ -1,0 +1,307 @@
+swagger: "2.0"
+info:
+  description: Swagger file for server code
+  version: "1.0.0"
+  title: Swagger Recipes API
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+# Paths supported by the server application
+paths:
+  /recipes:
+    get:
+      operationId: api.recipes.read_all
+      tags:
+        - Recipes
+      summary: Read the entire set of recipes, sorted by name
+      description: Read the entire set of recipes, sorted by name
+      responses:
+        200:
+          description: Successfully read recipes set operation
+          schema:
+            type: array
+            items:
+              properties:
+                recipe_id:
+                  type: string
+                  description: Id of the recipe
+                name:
+                  type: string
+                  description: Recipe name
+                ingredients:
+                  type: string
+                  description: Recipe ingredients
+                preparation:
+                  type: string
+                  description: Recipe preparation
+                servings:
+                  type: integer
+                  description: Recipe servings amount
+                total_time:
+                  type: string
+                  description: Recipe total time of preparation
+                timestamp:
+                  type: string
+                  description: Creation/Update timestamp of the recipe
+
+    post:
+      operationId: api.recipes.create
+      tags:
+        - Recipes
+      summary: Create a recipe
+      description: Create a new recipe
+      parameters:
+        - name: recipe
+          in: body
+          description: recipe to create
+          required: True
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Recipe name
+              ingredients:
+                type: string
+                description: Recipe ingredients
+              preparation:
+                type: string
+                description: Recipe preparation
+              servings:
+                type: integer
+                description: Recipe servings amount
+              total_time:
+                type: string
+                description: Recipe total time of preparation
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the recipe
+      responses:
+        201:
+          description: Successfully created recipe
+          schema:
+            properties:
+              recipe_id:
+                type: string
+                description: Id of the recipe
+              name:
+                type: string
+                description: Recipe name
+              ingredients:
+                type: string
+                description: Recipe ingredients
+              preparation:
+                type: string
+                description: Recipe preparation
+              servings:
+                type: integer
+                description: Recipe servings amount
+              total_time:
+                type: string
+                description: Recipe total time of preparation
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the recipe
+
+  /recipes/{name}:
+    get:
+      operationId: api.recipes.read_one
+      tags:
+        - Recipes
+      summary: Read one recipe
+      description: Read one recipe
+      parameters:
+        - name: name
+          in: path
+          description: Name of the recipe to get
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read recipe from recipe data operation
+          schema:
+            type: object
+            properties:
+              recipe_id:
+                type: string
+                description: Id of the recipe
+              name:
+                type: string
+                description: Recipe name
+              ingredients:
+                type: string
+                description: Recipe ingredients
+              preparation:
+                type: string
+                description: Recipe preparation
+              servings:
+                type: integer
+                description: Recipe servings amount
+              total_time:
+                type: string
+                description: Recipe total time of preparation
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the recipe
+
+    put:
+      operationId: api.recipes.update
+      tags:
+        - Recipes
+      summary: Update a recipe
+      description: Update a recipe
+      parameters:
+        - name: name
+          in: path
+          description: Name of the recipe to update
+          type: string
+          required: True
+        - name: recipe
+          in: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Recipe name
+              ingredients:
+                type: string
+                description: Recipe ingredients
+              preparation:
+                type: string
+                description: Recipe preparation
+              servings:
+                type: integer
+                description: Recipe servings amount
+              total_time:
+                type: string
+                description: Recipe total time of preparation
+      responses:
+        200:
+          description: Successfully updated recipe
+          schema:
+            properties:
+              recipe_id:
+                type: string
+                description: Id of the recipe in the database
+              name:
+                type: string
+                description: Recipe name
+              ingredients:
+                type: string
+                description: Recipe ingredients
+              preparation:
+                type: string
+                description: Recipe preparation
+              servings:
+                type: integer
+                description: Recipe servings amount
+              total_time:
+                type: string
+                description: Recipe total time of preparation
+              timestamp:
+                type: string
+                description: Creation/Update timestamp of the recipe
+
+    delete:
+      operationId: api.recipes.delete
+      tags:
+        - Recipes
+      summary: Delete a recipe from the recipe list
+      description: Delete a recipe
+      parameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the recipe to delete
+          required: true
+      responses:
+        200:
+          description: Successfully deleted a recipe
+  /recipes/ingredient/{ingredient}:
+    get:
+      operationId: api.recipes.read_ingredient
+      tags:
+      - Recipes
+      summary: Read recipes with given ingredient
+      description: Read recipes with given ingredient
+      parameters:
+      - name: ingredient
+        in: path
+        description: Name of the ingredient to look for in recipes
+        type: string
+        required: True
+      responses:
+        200:
+          description: Successfully read recipes from recipe data operation
+          schema:
+            type: array
+            items:
+              properties:
+                recipe_id:
+                  type: string
+                  description: Id of the recipe
+                name:
+                  type: string
+                  description: Recipe name
+                ingredients:
+                  type: string
+                  description: Recipe ingredients
+                preparation:
+                  type: string
+                  description: Recipe preparation
+                servings:
+                  type: integer
+                  description: Recipe servings amount
+                total_time:
+                  type: string
+                  description: Recipe total time of preparation
+                timestamp:
+                  type: string
+                  description: Creation/Update timestamp of the recipe
+
+  /recipes/tag/{tag}:
+    get:
+      operationId: api.recipes.read_tag
+      tags:
+      - Recipes
+      summary: Read recipes with given tag
+      description: Read recipes with given tag
+      parameters:
+      - name: tag
+        in: path
+        description: Tag to look for in recipes
+        type: string
+        required: True
+      responses:
+        200:
+          description: Successfully read recipes from recipe data operation
+          schema:
+            type: array
+            items:
+              properties:
+                recipe_id:
+                  type: string
+                  description: Id of the recipe
+                name:
+                  type: string
+                  description: Recipe name
+                ingredients:
+                  type: string
+                  description: Recipe ingredients
+                preparation:
+                  type: string
+                  description: Recipe preparation
+                servings:
+                  type: integer
+                  description: Recipe servings amount
+                total_time:
+                  type: string
+                  description: Recipe total time of preparation
+                timestamp:
+                  type: string
+                  description: Creation/Update timestamp of the recipe
