@@ -23,9 +23,9 @@ On chosen directory:
     coverage run --source ./ -m unittest discover
 
 ## Create base database
-It is not necessayr to create de database file since it is already on folder, but in the case of wanting to create the file recipes.db, use the following command:
+It is not necessary to create de database file since it is already on folder, but in the case of wanting to create the file recipes.db, use the following command:
 
-    python -m db.create_databse
+    python -m db.create_database
 
 # REST API
 
