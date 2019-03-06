@@ -6,6 +6,11 @@ This is a API REST for recipes, with it is possible to search for existing recip
 ## Install
 
     pip install requirements.txt
+    
+## Set environment variable 
+For directory chosen for clone, set environment variable as:
+   
+    RECIPES_BASE_DATA_DIR: C:\path\to\recipes_api
 
 ## Run the app
 On chosen directory:
