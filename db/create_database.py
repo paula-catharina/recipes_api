@@ -42,8 +42,9 @@ RECIPES = [
 ]
 
 # Delete database file if it exists currently
-if os.path.exists("recipes.db"):
-    os.remove("recipes.db")
+basedir = os.getenv("RECIPES_BASE_DATA_DIR")
+if os.path.exists(basedir + "/db/recipes.db"):
+    os.remove(basedir + "/db/recipes.db")
 
 # Create the database
 db.create_all()
