@@ -48,7 +48,7 @@ if os.path.exists("recipes.db"):
 # Create the database
 db.create_all()
 
-# iterate over the PEOPLE structure and populate the database
+# iterate over the RECIPES structure and populate the database
 for recipe in RECIPES:
     recipe = Recipe(name=recipe.get("name"), ingredients=recipe.get("ingredients"),
                     preparation=recipe.get("ingredients"), servings=recipe.get("servings"),

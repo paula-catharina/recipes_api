@@ -36,7 +36,7 @@ def read_one(name):
         data = recipe_schema.dump(recipe).data
         return data
 
-    # If recipe id does not exist
+    # If recipe name does not exist
     else:
         abort(
             404,
@@ -61,7 +61,7 @@ def read_ingredient(ingredient):
         data = recipe_schema.dump(recipe).data
         return data
 
-    # If recipe id does not exist
+    # If recipe ingredient does not exist
     else:
         abort(
             404,
@@ -86,7 +86,7 @@ def read_tag(tag):
         data = recipe_schema.dump(recipe).data
         return data
 
-    # If recipe id does not exist
+    # If recipe tag does not exist
     else:
         abort(
             404,
@@ -100,7 +100,7 @@ def create(recipe):
     """
     This function creates a new recipe in the recipes structure
     based on the passed in recipes data
-    :param recipe:  recipe to create in people structure
+    :param recipe:  recipe to create in recipe structure
     :return: 201 on success, 406 on recipes exists
     """
     name = recipe.get('name')
@@ -119,7 +119,7 @@ def create(recipe):
         .filter(Recipe.tags == tags) \
         .one_or_none()
 
-    # Is it possible to insert the recipe?
+    # If the recipe to be created doesn't already exists on database
     if existing_recipe is None:
 
         # Create a recipe instance using the schema and the passed-in recipe
@@ -130,12 +130,12 @@ def create(recipe):
         db.session.add(new_recipe)
         db.session.commit()
 
-        # Serialize and return the newly created person in the response
+        # Serialize and return the newly created recipe in the response
         return schema.dump(new_recipe).data, 201
 
-    # Otherwise, if recipe exists already
+    # If recipe already exists
     else:
-        abort(406, f'recipe {name} exists already')
+        abort(406, 'recipe {name} exists already')
 
 
 def update(name, recipe):
@@ -148,7 +148,7 @@ def update(name, recipe):
     # Get the recipe requested from the db into session
     recipe_to_update = Recipe.query.filter(Recipe.name == name).one_or_none()
 
-    # Did we find a recipe?
+    # If recipe to be updated really exists on databse
     if recipe_to_update is not None:
 
         # turn the passed in recipe into a db object
@@ -167,7 +167,7 @@ def update(name, recipe):
 
         return data, 200
 
-    # Otherwise, recipe wasn't found
+    # If recipe wasn't found
     else:
         abort(
             404,

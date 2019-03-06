@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: Swagger file for server code
+  description: Swagger file for recipes API server code
   version: "1.0.0"
   title: Swagger Recipes API
 consumes:
